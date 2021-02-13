@@ -31,7 +31,7 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 
 port = os.environ.get('PORT', 18080)
 
-device = os.environ.get("DEVICE", 'cuda')
+device = os.environ.get("DEVICE", 'cpu')
 
 rec_name = os.environ.get("REC_NAME", "arcface_r100_v1")
 det_name = os.environ.get("DET_NAME", "retinaface_mnet025_v2")

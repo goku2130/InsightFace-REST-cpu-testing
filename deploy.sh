@@ -25,7 +25,7 @@ cpus=$(( ncpu / (n_gpu * n_con) ))
 
 
 #Create directory to store downloaded models
-mkdir -p models
+#mkdir -p models
 
 echo "Starting $((n_gpu * n_con)) containers on $n_gpu GPUs ($n_con containers per GPU)";
 echo "Containers port range: $START_PORT - $(($START_PORT + ($n_gpu* $n_con) - 1))"
@@ -48,7 +48,6 @@ for i in $(seq 0 $(($n_gpu - 1)) ); do
         echo --- Starting container $name  with $device  at port $port CPU set=$CPU_SET;
         ((p++));
         docker run  -p $port:18080\
-            --gpus $device\
             -d\
             -e PYTHONUNBUFFERED=1\
             -e PORT=18080\
@@ -70,7 +69,6 @@ for i in $(seq 0 $(($n_gpu - 1)) ); do
             -e DEF_EXTRACT_GA=False\
             -e DEF_API_VER='1'\
             -v $PWD/models/mxnet:/root/.insightface/models\
-            --cpuset-cpus=$CPU_SET\
             --name=$name\
             $IMAGE:$TAG
     done

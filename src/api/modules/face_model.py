@@ -93,6 +93,19 @@ class ImageData:
                 self.bottom_border = ch - h
 
 
+def get_arcface_chiya(name='model-0001.params', download=False,
+                root='/root/.insightface/models/model/', **kwargs):
+    if not download:
+        from insightface.model_zoo.face_recognition import FaceRecognition
+        return FaceRecognition(name, False, root+name)
+    #else:
+        # from insightface.model_zoo.face_recognition import FaceRecognition
+        # from .model_store import get_model_file
+        #_file = get_model_file("arcface_%s" % name, root=root)
+        # TODO : Include the code to download the custom arcface mddel
+        # return FaceRecognition(name, True, _file)
+
+
 class FaceAnalysis:
     def __init__(self, det_name: str = 'retinaface_r50_v1', rec_name: str = 'arcface_r100_v1',
                  ga_name: str = 'genderage_v1', device: str = 'cuda',
@@ -110,7 +123,8 @@ class FaceAnalysis:
             self.det_model = DetectorRetina(det_name=det_name, device=device)
 
         if rec_name is not None:
-            self.rec_model = model_zoo.get_model(rec_name)
+            #model_zoo._models['arcface_chiya'] = arcface_chiya
+            self.rec_model = get_arcface_chiya()
             self.rec_model.prepare(ctx)
         else:
             self.rec_model = None

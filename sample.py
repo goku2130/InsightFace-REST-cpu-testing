@@ -82,7 +82,7 @@ if __name__ == "__main__":
         task_set = list(task_set)
         print('Encoding images.... Finished')
 
-        pool = multiprocessing.Pool(20)
+        pool = multiprocessing.Pool(10)
         t0 = time.time()
         r = pool.map(extract_vecs, task_set)
         pool.close()

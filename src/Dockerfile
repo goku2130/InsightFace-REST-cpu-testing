@@ -15,7 +15,7 @@ RUN  wget -O ~/get-pip.py \
     ln -s /usr/bin/python3.7 /usr/local/bin/python3 && \
     ln -s /usr/bin/python3.7 /usr/local/bin/python
 
-RUN pip install mxnet-cu100 torch torchvision numpy
+RUN pip install mxnet torch torchvision numpy
 RUN pip install insightface fastapi uvicorn ujson facenet-pytorch aiofiles
 
 WORKDIR /app
