@@ -53,6 +53,7 @@ def extract_vecs(task):
             prob = face['prob']
             facedata = face['facedata']
             save_file(facedata, 'crops/{}_{}_{}.jpg'.format(int(norm), prob, face['age']))
+            print(face)
 
 
 ims = 'test_images'
@@ -71,7 +72,7 @@ if __name__ == "__main__":
     server = 'http://localhost:18081/extract'
 
     speeds = []
-    for i in range(0, 10):
+    for i in range(0, 2):
         files = glob.glob(ims + '*/*.jpg')
         print(f"Total files detected: {len(files)}")
         multiply = 1
